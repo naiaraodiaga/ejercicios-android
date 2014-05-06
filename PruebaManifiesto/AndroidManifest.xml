@@ -51,8 +51,8 @@
         <service 
             android:name="MyService" android:permission="com.naiaraodiaga.pruebamanifiesto.CUSTOM_PERMISSION">
         </service>
-        <provider android:name="MyProvider" android:permission="com.naiaraodiaga.pruebamanifiesto.CUSTOM_PERMISSION" android:authorities="@string/app_name"></provider>
-        <receiver android:name="MyReceiver" android:permission="com.naiaraodiaga.pruebamanifiesto.CUSTOM_PERMISSION">
+        <provider android:name=".MyProvider" android:permission="com.naiaraodiaga.pruebamanifiesto.CUSTOM_PERMISSION" android:authorities="com.naiaraodiaga.pruebamanifiesto.authority"></provider>
+        <receiver android:name=".MyReceiver" android:permission="com.naiaraodiaga.pruebamanifiesto.CUSTOM_PERMISSION">
             <intent-filter>
             	<action android:name="android.intent.action.AIRPLANE_MODE" />
             	<action android:name="android.intent.action.BATTERY_LOW"/>
