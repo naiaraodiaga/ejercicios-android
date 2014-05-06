@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">Cambios Config</string>
+    <string name="hello_world">Hola mundo!</string>
+    <string name="texto">Texto de ejemplo 800dp</string>
+
+</resources>
