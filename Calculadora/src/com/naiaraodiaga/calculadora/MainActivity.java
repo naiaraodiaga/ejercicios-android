@@ -17,10 +17,7 @@ import android.os.Build;
 public class MainActivity extends Activity {
 
 	private Calculadora calculadora;
-//	private String numberDisplayed = "";
-//	private double resultNumber = 0.0;
-	private TextView textView, resultView;
-	private boolean ultimaEntradaEsOperador;
+	private TextView resultView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +59,6 @@ public class MainActivity extends Activity {
 		Button boton = (Button) v;
 		String num = boton.getText().toString();
 		
-		Log.d("NAIARA", "num: "+num);
-	
 		calculadora.inputDigito(num);
 		resultView.setText(calculadora.displayValor());
 	}
@@ -72,8 +67,6 @@ public class MainActivity extends Activity {
 		Button boton = (Button) v;
 		String op = boton.getText().toString();
 		
-		Log.d("NAIARA", "op: "+op);
-	
 		calculadora.inputOperador(op);
 		resultView.setText(calculadora.displayValor());
 	}

@@ -37,10 +37,6 @@ public class Calculadora {
 	
 	
 	public void inputOperador(String operador){
-//	    if(!operando1.equalsIgnoreCase("") && !operador.equalsIgnoreCase("")){
-//	        inputIgual();
-//	    }
-	    
 	    this.operador = operador;
 	    this.operando1 = this.display;
 	    
