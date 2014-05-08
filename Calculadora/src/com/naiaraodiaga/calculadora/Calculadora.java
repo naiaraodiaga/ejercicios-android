@@ -3,7 +3,7 @@ package com.naiaraodiaga.calculadora;
 public class Calculadora {
 
 	private boolean ultimaEntradaEsOperador;
-	private String display = "", operador, operando1;
+	private String display = "", operador = "", operando1 = "";
 	
 	public void inputDigito(String num){
 		if(ultimaEntradaEsOperador){
@@ -26,13 +26,12 @@ public class Calculadora {
 	
 	
 	public boolean hasDot(String str){
-	     char dot = '.';
-	 
-	     for(int i = 0; i < str.length(); i ++){
-	         if(str.charAt(i)  == dot){
-	             return true;
-	         }
+	     String dot = ".";
+	     
+	     if(str.contains(dot)){
+	    	 return true;
 	     }
+
 	     return false;
 	 }
 	
@@ -50,7 +49,7 @@ public class Calculadora {
 	
 	
 	public void inputIgual(){
-	    if(!this.operando1.isEmpty()){
+	    if(!this.operando1.isEmpty() && !ultimaEntradaEsOperador){
 	        double operando1 = Double.parseDouble(this.operando1);
 	        double operando2 = Double.parseDouble(this.display);
 	        if(this.operador.equalsIgnoreCase("+")){
@@ -71,10 +70,51 @@ public class Calculadora {
 	        this.operador = "";
 	    }
 	}
-	
-	
+
 	public void inputBorrar(){
 		this.display = "";
 	}
+	
+	
+	public String getOperador() {
+		return operador;
+	}
+
+
+	public void setOperador(String operador) {
+		this.operador = operador;
+	}
+
+
+	public String getOperando1() {
+		return operando1;
+	}
+
+
+	public void setOperando1(String operando1) {
+		this.operando1 = operando1;
+	}
+
+
+	public String getDisplay() {
+		return display;
+	}
+
+
+	public void setDisplay(String display) {
+		this.display = display;
+	}
+
+
+	public boolean isUltimaEntradaEsOperador() {
+		return ultimaEntradaEsOperador;
+	}
+
+
+	public void setUltimaEntradaEsOperador(boolean ultimaEntradaEsOperador) {
+		this.ultimaEntradaEsOperador = ultimaEntradaEsOperador;
+	}
+	
+	
 	
 }
