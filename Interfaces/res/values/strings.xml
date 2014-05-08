@@ -13,5 +13,9 @@
     <string name="cajaH">H</string>
     <string name="cajaG">G</string>
     <string name="cajaI">I</string>
+    <string name="to">To</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
 
 </resources>
