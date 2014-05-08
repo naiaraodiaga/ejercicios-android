@@ -27,32 +27,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton7"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton8"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/boton9" 
-            android:onClick="pressDigito" />
+            android:onClick="pressDigito"
+            android:text="@string/boton9"
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressOperador"
             android:text="@string/botonMas"
-            android:onClick="pressOperador" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 
@@ -66,32 +70,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton4"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton5"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton6"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressOperador"
             android:text="@string/botonMenos"
-            android:onClick="pressOperador" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 
@@ -105,32 +113,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton1"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button10"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton2"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button11"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton3"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button12"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressOperador"
             android:text="@string/botonMult"
-            android:onClick="pressOperador" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 
@@ -144,32 +156,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/botonComa"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button14"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressDigito"
             android:text="@string/boton0"
-            android:onClick="pressDigito" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button15"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressBorrar"
             android:text="@string/botonDel"
-            android:onClick="pressBorrar" />
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button16"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="pressOperador"
             android:text="@string/botonDiv"
-            android:onClick="pressOperador" />
+            android:textColor="@color/White" />
 
     </LinearLayout>
 
@@ -178,7 +194,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:onClick="pressIgual"
         android:text="@string/botonIgual"
-        android:onClick="pressIgual" />
+        android:textColor="@color/White" />
 
 </LinearLayout>
