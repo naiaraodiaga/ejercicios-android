@@ -21,5 +21,8 @@
     <string name="botonIgual">=</string>
     <string name="botonComa">.</string>
     <string name="botonDel">Del</string>
-    
+    <string name="botonx2">x2</string>
+    <string name="botonx3">x3</string>
+    <string name="botonParentIz">(</string>
+    <string name="botonParentDc">)</string>
 </resources>

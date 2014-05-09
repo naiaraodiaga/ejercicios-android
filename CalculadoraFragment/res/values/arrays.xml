@@ -10,13 +10,13 @@
         <item android:id="@+id/button5" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/button5</item>
         <item android:id="@+id/button6" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/button6</item>
         <item android:id="@+id/button7" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/button7</item>
-        <item android:id="@+id/button8" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/button8</item>
+        <item android:id="@+id/buttonx3" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonx3</item>
         <item android:id="@+id/button9" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/button9</item>
         <item android:id="@+id/buttonPunto" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonPunto</item>
     </integer-array>
 
     <integer-array android:id="@+id/arrayOperadores" name="arrayOperadores" android:layout_width="wrap_content" android:layout_height="wrap_content">
-        <item android:id="@+id/buttonMas" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonMas</item>
+        <item android:id="@+id/buttonParentDc" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonParentDc</item>
         <item android:id="@+id/buttonMenos" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonMenos</item>
         <item android:id="@+id/buttonMult" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonMult</item>
         <item android:id="@+id/buttonDiv" android:layout_width="wrap_content" android:layout_height="wrap_content">@id/buttonDiv</item>
