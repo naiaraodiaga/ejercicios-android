@@ -13,56 +13,47 @@ import android.widget.EditText;
 import com.naiaraodiaga.todolistfragmentmanager.InputFragment.IInput;
 
 public class MainActivity extends Activity implements IInput {
-	private ArrayList<String> listaTareas;
-	private ArrayAdapter<String> adapter;
+	ListFragment lista;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		ListFragment lista = new ListFragment();
 
-		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager
-				.beginTransaction();
-		fragmentTransaction.replace(R.id.inputLayout, new InputFragment());
-		fragmentTransaction.replace(R.id.listLayout, lista);
-		fragmentTransaction.commit();
-
-		listaTareas = new ArrayList<String>();
-		adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, listaTareas);
-
-		lista.setListAdapter(adapter);
+		if(savedInstanceState == null) {
+			FragmentManager fragmentManager = getFragmentManager();
+			FragmentTransaction fragmentTransaction = fragmentManager
+					.beginTransaction();
+			fragmentTransaction.add(R.id.inputLayout, new InputFragment());
+			fragmentTransaction.add(R.id.listLayout, new MiListaFragment(), "listLayout");
+			fragmentTransaction.commit();
+		}
 	}
 
 	@Override
 	public void addToDo(EditText editText) {
-		if (!editText.getText().toString().equalsIgnoreCase("")) {
-			listaTareas.add(0, editText.getText().toString());
-			adapter.notifyDataSetChanged();
-			editText.setText("");
+		if(!editText.getText().toString().equalsIgnoreCase("")){
+			((MiListaFragment)getFragmentManager().findFragmentByTag("listLayout")).addElement(editText.getText().toString());
 		}
+		
 	}
+	
+	
 
-	// Called after onCreate has finished, use to restore UI state @Override
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		// Restore UI state from the savedInstanceState.
-		// This bundle has also been passed to onCreate.
-		listaTareas.addAll(savedInstanceState.getStringArrayList("listaTareas"));
-		adapter.notifyDataSetChanged();
-	}
-
-	// Called to save UI state changes at the end of the active lifecycle.
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-		// Save UI state changes to the savedInstanceState.
-		// This bundle will be passed to onCreate and onRestoreInstanceState if
-		// the process is killed and restarted by the run time.
-		savedInstanceState.putStringArrayList("listaTareas", listaTareas);
-
-		super.onSaveInstanceState(savedInstanceState);
-	}
+//	public void onRestoreInstanceState(Bundle savedInstanceState) {
+//		super.onRestoreInstanceState(savedInstanceState);
+//		
+//		listaTareas.addAll(savedInstanceState.getStringArrayList("listaTareas"));
+//		adapter.notifyDataSetChanged();
+//	}
+//
+//	@Override
+//	public void onSaveInstanceState(Bundle savedInstanceState) {
+//		savedInstanceState.putStringArrayList("listaTareas", listaTareas);
+//
+//		super.onSaveInstanceState(savedInstanceState);
+//	}
+	
+	
 }

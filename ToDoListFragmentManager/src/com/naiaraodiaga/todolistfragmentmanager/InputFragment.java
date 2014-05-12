@@ -35,6 +35,7 @@ public class InputFragment extends Fragment{
 				if(event.getAction() == KeyEvent.ACTION_DOWN){
 					if(keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER){
 						iInput.addToDo(editText);
+						editText.setText("");
 						return true;
 					}
 				}
@@ -51,7 +52,7 @@ public class InputFragment extends Fragment{
 				Button b = (Button) v;
 				
 				iInput.addToDo(editText);
-
+				editText.setText("");
 			}
 		};
 		
