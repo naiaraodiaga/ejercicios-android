@@ -147,7 +147,7 @@ public class MainActivity extends Activity {
 				uriContact = data.getData();
 				 
 	            retrieveContactName();
-//	            retrieveContactNumber();
+	            retrieveContactNumber();
 //	            retrieveContactPhoto();
 			}
 		}
