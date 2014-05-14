@@ -25,11 +25,18 @@ public class SecondActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_second);
 
-		String texto = getIntent().getStringExtra("editTextPantalla1");
+		Intent intent = getIntent();
+		String texto = null;
+		if (intent != null){
+			texto = intent.getStringExtra("editTextPantalla1");
+		}
+		
 
 		TextView textView = (TextView) findViewById(R.id.textViewPantalla2);
-		textView.setText(texto);
-
+		if(texto != null){
+			textView.setText(texto);
+		}
+		
 		Button botonAceptar = (Button) findViewById(R.id.aceptar);
 
 		OnClickListener onClickForm = new OnClickListener() {
@@ -53,10 +60,10 @@ public class SecondActivity extends Activity {
 
 	public void aceptar() {
 		editText = (EditText) findViewById(R.id.editTextPantalla2);
-		Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+		Intent intent = new Intent();			// Creamos un intent vac’o como contenedor, bundle (porque no sabemos desde d—nde nos llaman, puede haber m‡s actividades)
 		intent.putExtra("editTextPantalla2", editText.getText().toString());
 
-		setResult(RESULT_OK, intent);
+		setResult(RESULT_OK, intent); // Si lo hacemos dentro de un escuchador, debemos poner Activity.RESULT_OK
 		finish();
 	}
 

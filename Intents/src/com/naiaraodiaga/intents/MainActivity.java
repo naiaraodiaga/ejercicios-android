@@ -1,10 +1,13 @@
 package com.naiaraodiaga.intents;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -148,7 +151,7 @@ public class MainActivity extends Activity {
 				 
 	            retrieveContactName();
 	            retrieveContactNumber();
-//	            retrieveContactPhoto();
+	            retrieveContactPhoto();
 			}
 		}
 
@@ -200,7 +203,6 @@ public class MainActivity extends Activity {
  
         cursor.close();
  
-        Log.d("NAIARA", "Contact Name: " + contactName);
         textView.setText(contactName);
  
     }
@@ -221,8 +223,7 @@ public class MainActivity extends Activity {
  
         cursorID.close();
  
-        Log.d("NAIARA", "Contact ID: " + contactID);
- 
+
         // Using the contact ID now we will get contact phone number
         Cursor cursorPhone = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER},
@@ -239,11 +240,32 @@ public class MainActivity extends Activity {
         }
  
         cursorPhone.close();
- 
-        Log.d("NAIARA", "Contact Phone Number: " + contactNumber);
         
         String nombre = textView.getText().toString();
-        Log.d("NAIARA", "Contact Name: " + nombre);
+        
         textView.setText(nombre + " " + contactNumber);
+    }
+	
+	
+    private void retrieveContactPhoto() {
+    	 
+        Bitmap photo = null;
+ 
+        try {
+            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(getContentResolver(),
+                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(contactID)));
+ 
+            if (inputStream != null) {
+                photo = BitmapFactory.decodeStream(inputStream);
+                imagen.setImageBitmap(photo);
+            }
+ 
+            assert inputStream != null;
+            inputStream.close();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ 
     }
 }
