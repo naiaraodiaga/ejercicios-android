@@ -91,7 +91,6 @@ public class MainActivity extends Activity {
 		String line = null;
 		
         while ((line = bf.readLine()) != null) {
-//            sb.append(line + "\n");
             sb.append(line);
         }
         json = new JSONObject(sb.toString());
@@ -99,10 +98,10 @@ public class MainActivity extends Activity {
         array = json.getJSONArray("photos");
         for (int i = 0; i < array.length(); i++) {
 			JSONObject photo = array.getJSONObject(i);
-			Log.d("NAIARA", photo.getString("image_url"));
+			Log.d("NAIARA", "Name: "+photo.getString("name")+"\t URL: "+photo.getString("image_url"));
 		}
         
-		Log.d("NAIARA", "processStream: "+in.toString()+" \n\n obj: "+json.toString()+ "\n\n\n array: "+array);
+		
 		
 	}
 
