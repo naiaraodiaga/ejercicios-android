@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="ruta">http://www.arkaitzgarro.com/android/photos.json</string>
     <string name="download">Download photos</string>
+    <string name="downloadZip">Download Zip</string>
 
 </resources>
