@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
@@ -70,6 +72,18 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 				Log.d("NAIARA", "There's not conectivity");
 				Toast t = Toast.makeText(context, "There's not conectivity", Toast.LENGTH_LONG);
 			    t.show();
+			}
+			else if(action.equalsIgnoreCase("android.net.conn.CONNECTIVITY_CHANGE")){
+				ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+				NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+				NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+				
+				if(wifi.isAvailable() || mobile.isAvailable()){
+					Log.d("NAIARA", "Network available");
+				}
+				else{
+					Log.d("NAIARA", "Network not available");
+				}
 			}
 
 		} catch (Exception e) {
