@@ -32,7 +32,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	private long reference;
+	private long myReference;
 	private BroadcastReceiver receiver;
 	private DownloadManager downloadManager;
 
@@ -61,10 +61,11 @@ public class MainActivity extends Activity {
 
 				Log.d("NAIARA", "Downloading");
 				
-				long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-				if(id == reference) {
+				long reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+				if(reference == myReference) {
 					Query q = new Query();
-					q.setFilterById(id);
+					q.setFilterById(reference);
+
 					
 					Cursor downloads = downloadManager.query(q);
 					
@@ -78,6 +79,7 @@ public class MainActivity extends Activity {
 						Log.d("NAIARA", "Nombre : " + name);
 						Log.d("NAIARA", "Tama–o : " + String.valueOf(size));
 						
+						// En cuanto se descarga, se muestran las opciones de apertura (las aplicaciones con las que se puede abrir)
 						Intent testIntent = new Intent();
 			            testIntent.setAction(Intent.ACTION_VIEW);
 			            File f = new File(name);
@@ -86,6 +88,7 @@ public class MainActivity extends Activity {
 			            startActivity(testIntent);
 						
 					}
+					downloads.close();
 				}
 			}
 		};
@@ -183,7 +186,7 @@ public class MainActivity extends Activity {
 			request.setDestinationInExternalFilesDir(this,
 					Environment.DIRECTORY_DOWNLOADS, uri.getLastPathSegment());
 
-			reference = downloadManager.enqueue(request);
+			myReference = downloadManager.enqueue(request);
 		} catch (Exception e) {
 			Log.d("NAIARA", "Exception: " + e.getMessage());
 		}
