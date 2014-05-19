@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Autorefresh / Interval" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="PREF_SWITCH"
+            android:summary="Autorefresh"
+            android:title="Switch Preference" />
+
+        <ListPreference
+            android:entries="@array/intervalArray"
+            android:entryValues="@array/intervalArrayValues"
+            android:key="PREF_INTERVAL"
+            android:title="Interval" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Earthquake Category" >
+        <ListPreference
+            android:entries="@array/earthquakeArray"
+            android:entryValues="@array/earthquakeArrayValues"
+            android:key="PREF_MAG"
+            android:title="Magnitude" />
+    </PreferenceCategory>
+    
+￼
+
+</PreferenceScreen>
