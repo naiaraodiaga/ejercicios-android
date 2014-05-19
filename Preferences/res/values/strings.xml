@@ -7,9 +7,9 @@
     <string name="autorefresh">Autorefresh:</string>
     <string name="interval">Interval:</string>
     <string name="title_activity_preference">PreferenceActivity</string>
-	<string name="PREF_SWITCH">PREF_SWITCH</string>
-    <string name="PREF_INTERVAL">PREF_INTERVAL</string>
-    <string name="PREF_MAG">PREF_MAG</string>
+	<string name="AUTOREFRESH_KEY">AUTOREFRESH_KEY</string>
+    <string name="INTERVAL_KEY">INTERVAL_KEY</string>
+    <string name="MAG_KEY">MAG_KEY</string>
     <string name="REFRESH_INTERVAL">Autorefresh / Interval</string>
     <string name="EARTHQUAKE">Earthquake Category</string>
     <string name="CONNECTIVITY">Connectivity Category</string>

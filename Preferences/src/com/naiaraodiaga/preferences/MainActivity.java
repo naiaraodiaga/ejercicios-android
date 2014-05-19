@@ -1,6 +1,5 @@
 package com.naiaraodiaga.preferences;
 
-
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -22,16 +21,16 @@ public class MainActivity extends Activity {
 	TextView textInterval;
 	boolean isAutorefreshed;
 	int intervalIndex;
-	
+
 	private SharedPreferences mySharedPreferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_main);
-		
-		textAutorefresh = (TextView)findViewById(R.id.textViewRefreshP1);
-		textInterval = (TextView)findViewById(R.id.textViewIntervalP1);
+		// setContentView(R.layout.activity_main);
+
+		textAutorefresh = (TextView) findViewById(R.id.textViewRefreshP1);
+		textInterval = (TextView) findViewById(R.id.textViewIntervalP1);
 
 	}
 
@@ -50,12 +49,16 @@ public class MainActivity extends Activity {
 			// Aqu’ abrimos un intent
 			Intent intent = new Intent(this, MyPreferenceActivity.class);
 			startActivity(intent);
-			
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onResume() {
+		
+		super.onResume();
+	}
 
-	
 }
