@@ -1,5 +1,6 @@
 package com.naiaraodiaga.preferences;
 
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -27,7 +28,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+//		setContentView(R.layout.activity_main);
 		
 		textAutorefresh = (TextView)findViewById(R.id.textViewRefreshP1);
 		textInterval = (TextView)findViewById(R.id.textViewIntervalP1);
@@ -55,4 +56,6 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+
+	
 }

@@ -7,5 +7,17 @@
     <string name="autorefresh">Autorefresh:</string>
     <string name="interval">Interval:</string>
     <string name="title_activity_preference">PreferenceActivity</string>
-
+	<string name="PREF_SWITCH">PREF_SWITCH</string>
+    <string name="PREF_INTERVAL">PREF_INTERVAL</string>
+    <string name="PREF_MAG">PREF_MAG</string>
+    <string name="REFRESH_INTERVAL">Autorefresh / Interval</string>
+    <string name="EARTHQUAKE">Earthquake Category</string>
+    <string name="CONNECTIVITY">Connectivity Category</string>
+    <string name="autorefresh_pref">Autorefresh</string>
+    <string name="autorefresh_title">Autorefresh switch</string>
+	<string name="interval_title">Interval </string>
+    <string name="magnitude_title">Magnitude </string>
+    <string name="wifi">WIFI</string>
+    <string name="data">Data settings</string>
+    <string name="display">Display Settings </string>
 </resources>
