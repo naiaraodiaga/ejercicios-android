@@ -13,6 +13,7 @@ public class QuakeDBOpenHelper extends SQLiteOpenHelper{
 	public static final int DATABASE_VERSION = 1;
 	
 	public static final String QUAKE_ID = "_id";
+	public static final String ID_STR = "id_str";
 	public static final String PLACE = "place";
 	public static final String TIME = "time";
 	public static final String DETAIL = "detail";
@@ -22,11 +23,12 @@ public class QuakeDBOpenHelper extends SQLiteOpenHelper{
 	public static final String URL = "url";
 	public static final String CREATED_AT = "created_at";
 	public static final String UPDATED_AT = "updated_at";
-	public static final String[] DATABASE_COLUMNS = new String[] {QUAKE_ID, PLACE, TIME, DETAIL, MAGNITUDE, LAT, LONG, URL, CREATED_AT, UPDATED_AT};
+	public static final String[] DATABASE_COLUMNS = new String[] {QUAKE_ID, ID_STR, PLACE, TIME, DETAIL, MAGNITUDE, LAT, LONG, URL, CREATED_AT, UPDATED_AT};
 	
 	private static final String DATABASE_CREATE = 
 			"create table if not exists " + DATABASE_TABLE +" "+ "("
 			+ QUAKE_ID + " integer primary key autoincrement, "
+			+ ID_STR + " TEXT UNIQUE,"
 			+ PLACE + " text,"
 			+ TIME + " real, "
 			+ DETAIL + " text, "

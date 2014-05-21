@@ -2,6 +2,7 @@ package com.naiaraodiaga.earthquake;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.Activity;
@@ -32,17 +33,33 @@ public class MainActivity extends Activity {
 //		earthquakeDB.selectAllBD();
 //		Log.d("NAIARA", "select: "+ earthquakeDB.selectAllBD());
 		
-		Earthquake quake = new Earthquake("Fukushima", Long.valueOf(1006200700), "Mega Earthquake", 7.0, 31.06, 45.72, "http://www.fukushima.org");
-		Earthquake quake2 = new Earthquake("Tokyo", Long.valueOf(1006200700), "Tokyo Earthquake", 5.0, 31.06, 42.72, "http://www.tokyo.org");
-		earthquakeDB.addNewQuake(quake);
-		earthquakeDB.addNewQuake(quake2);
+//		Earthquake quake = new Earthquake("t1", "Fukushima", Long.valueOf(1006200700), "Mega Earthquake", 7.0, 31.06, 45.72, "http://www.fukushima.org");
+//		Earthquake quake2 = new Earthquake("t2", "Tokyo", Long.valueOf(1006200700), "Tokyo Earthquake", 5.0, 31.06, 42.72, "http://www.tokyo.org");
+//		earthquakeDB.insertQuake(quake);
+//		earthquakeDB.insertQuake(quake2);
+//		
+//		quake.setPlace("Osaka");
+//		
+//		earthquakeDB.updateQuake(1, quake);
 		
-		quake.setPlace("Osaka");
+//		earthquakeDB.deleteQuake(2);
 		
-		earthquakeDB.updateQuake(1, quake);
+//		earthquakeDB.deleteAllQuakes();
+		
+		QuakesDownloader qd = new QuakesDownloader(earthquakeDB, this);
 		
 		
-		earthquakeDB.closeDB();
+		ArrayList<Earthquake> arrayQuake = earthquakeDB.selectAllBD();
+		for (Earthquake earthquake : arrayQuake) {
+			Log.d("NAIARA", "Id: "+earthquake.getIdStr());
+			Log.d("NAIARA", "Place: "+earthquake.getPlace());
+			Log.d("NAIARA", "Time: "+earthquake.getTime());
+			Log.d("NAIARA", "Detail: "+earthquake.getDetail());
+			Log.d("NAIARA", "Magnitude: "+earthquake.getMagnitude());
+			Log.d("NAIARA", "Lat: "+earthquake.getLat());
+			Log.d("NAIARA", "Long: "+earthquake.getLon());
+			Log.d("NAIARA", "URL: "+earthquake.getUrl());
+		}
 		
 
 		if (savedInstanceState == null) {

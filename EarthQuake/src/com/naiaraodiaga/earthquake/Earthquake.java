@@ -5,17 +5,29 @@ import java.util.Date;
 
 public class Earthquake {
 
-	public String place;
-	public Date time;
-	public String detail;
-	public double magnitude;
-	public double lat;
-	public double lon;
-	public String url;
+	private long _id;
+	private String idStr;
+	private String place;
+	private Date time;
+	private String detail;
+	private double magnitude;
+	private double lat;
+	private double lon;
+	private String url;
 	
-	public Earthquake(String place, Long time, String detail, double magnitude, double lat, double lon, String url) {
+	public Earthquake() {
+		
+	}
+	
+	public Earthquake(long id, String idStr, String place, Long time, String detail, double magnitude, double lat, double lon, String url) {
+		this(idStr, place, time, detail, magnitude, lat, lon, url);
+		this._id = id;
+	}
+	
+	public Earthquake(String idStr, String place, Long time, String detail, double magnitude, double lat, double lon, String url) {
 		Date date = new Date(time);
 		
+		this.idStr = idStr;
 		this.place = place;
 		this.time = date;
 		this.detail = detail;
@@ -83,6 +95,25 @@ public class Earthquake {
 	}
 	
 	
+	public long get_id() {
+		return _id;
+	}
+
+	public void set_id(long _id) {
+		this._id = _id;
+	}
+
+	public String getIdStr() {
+		return idStr;
+	}
+
+	public void setIdStr(String idStr) {
+		this.idStr = idStr;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
 	
 
 	
