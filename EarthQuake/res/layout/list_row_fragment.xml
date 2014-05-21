@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="#cccccc" >
+
+        <TextView
+            android:id="@+id/magnitude"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Mag"
+            android:textSize="20dip"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Place"
+                android:textColor="#040404"
+                android:textSize="15dip"
+                android:textStyle="bold"
+                android:typeface="sans" />
+            
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:text="Time"
+                android:textColor="#343434"
+                android:textSize="10dip" />
+
+            
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

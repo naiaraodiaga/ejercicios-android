@@ -115,6 +115,9 @@ public class Earthquake {
 		this.time = time;
 	}
 	
-
+	@Override
+	public String toString() {
+		return this.magnitude + " " + this.place;
+	}
 	
 }

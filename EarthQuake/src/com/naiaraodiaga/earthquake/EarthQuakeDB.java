@@ -37,6 +37,18 @@ public class EarthQuakeDB {
 		db.close();
 	}
 
+	
+	public ArrayList<Earthquake> selectByMag(double mag) {
+		
+		String where = quakeDBOpenHelper.MAGNITUDE + "> ?";
+		String whereArgs[] = { String.valueOf(mag)};
+		Cursor cursor = db.query(quakeDBOpenHelper.getDatabaseTable(),
+				quakeDBOpenHelper.getDatabaseColumns(), where, whereArgs, null, null,
+				quakeDBOpenHelper.getDatabaseColumns()[0]);
+
+		return parseToArrayList(cursor);
+	}
+	
 	public ArrayList<Earthquake> selectAllBD() {
 		Cursor cursor = db.query(quakeDBOpenHelper.getDatabaseTable(),
 				quakeDBOpenHelper.getDatabaseColumns(), null, null, null, null,
