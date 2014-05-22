@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		EarthQuakeDB earthquakeDB = new EarthQuakeDB(this);
+//		EarthQuakeDB earthquakeDB = new EarthQuakeDB(this);
 
 		// earthquakeDB.selectAllBD();
 		// Log.d("NAIARA", "select: "+ earthquakeDB.selectAllBD());
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
 
 		// earthquakeDB.deleteAllQuakes();
 
-		QuakesDownloader qd = new QuakesDownloader(earthquakeDB, this);
+//		QuakesDownloader qd = new QuakesDownloader(EarthQuakeDB.getDB(this), this);
 
 //		ArrayList<Earthquake> arrayQuake = earthquakeDB.selectAllBD();
 //		for (Earthquake earthquake : arrayQuake) {

@@ -15,22 +15,31 @@ public class EarthQuakeDB {
 
 	private QuakeDBOpenHelper quakeDBOpenHelper = null;
 	private SQLiteDatabase db = null;
+	private static EarthQuakeDB earthquakeDB = null;
 
-	public EarthQuakeDB(Context context) {
+	private EarthQuakeDB(Context context) {
 		quakeDBOpenHelper = new QuakeDBOpenHelper(context,
 				QuakeDBOpenHelper.DATABASE_NAME, null,
 				QuakeDBOpenHelper.DATABASE_VERSION);
-		db = this.openDB();
+	}
+	
+	public static EarthQuakeDB getDB(Context context) {
+		
+		if(earthquakeDB == null){
+			earthquakeDB = new EarthQuakeDB(context);
+			earthquakeDB.openDB();	
+		}
+
+		return earthquakeDB;
 	}
 
-	public SQLiteDatabase openDB() {
+	public void openDB() {
 		try {
 			db = quakeDBOpenHelper.getWritableDatabase();
 
 		} catch (Exception e) {
 			Log.d("NAIARA", "ERROR EarthQuakeDB: " + e.getMessage());
 		}
-		return db;
 	}
 
 	public void closeDB() {
