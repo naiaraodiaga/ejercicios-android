@@ -5,11 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -29,7 +31,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-//		EarthQuakeDB earthquakeDB = new EarthQuakeDB(this);
+		// EarthQuakeDB earthquakeDB = new EarthQuakeDB(this);
 
 		// earthquakeDB.selectAllBD();
 		// Log.d("NAIARA", "select: "+ earthquakeDB.selectAllBD());
@@ -51,35 +53,35 @@ public class MainActivity extends Activity {
 
 		// earthquakeDB.deleteAllQuakes();
 
-//		QuakesDownloader qd = new QuakesDownloader(EarthQuakeDB.getDB(this), this);
+		// QuakesDownloader qd = new QuakesDownloader(EarthQuakeDB.getDB(this),
+		// this);
 
-//		ArrayList<Earthquake> arrayQuake = earthquakeDB.selectAllBD();
-//		for (Earthquake earthquake : arrayQuake) {
-//			Log.d("NAIARA", "Id: " + earthquake.getIdStr());
-//			Log.d("NAIARA", "Place: " + earthquake.getPlace());
-//			Log.d("NAIARA", "Time: " + earthquake.getTime());
-//			Log.d("NAIARA", "Detail: " + earthquake.getDetail());
-//			Log.d("NAIARA", "Magnitude: " + earthquake.getMagnitude());
-//			Log.d("NAIARA", "Lat: " + earthquake.getLat());
-//			Log.d("NAIARA", "Long: " + earthquake.getLon());
-//			Log.d("NAIARA", "URL: " + earthquake.getUrl());
-//		}
-//
-//		Log.d("NAIARA", "selectByMag");
-//		ArrayList<Earthquake> arrayQuake2 = earthquakeDB.selectByMag(2);
-//		for (Earthquake earthquake : arrayQuake2) {
-//			Log.d("NAIARA", "Id: " + earthquake.getIdStr());
-//			Log.d("NAIARA", "Place: " + earthquake.getPlace());
-//			Log.d("NAIARA", "Time: " + earthquake.getTime());
-//			Log.d("NAIARA", "Detail: " + earthquake.getDetail());
-//			Log.d("NAIARA", "Magnitude: " + earthquake.getMagnitude());
-//			Log.d("NAIARA", "Lat: " + earthquake.getLat());
-//			Log.d("NAIARA", "Long: " + earthquake.getLon());
-//			Log.d("NAIARA", "URL: " + earthquake.getUrl());
-//		}
-		
-		
-//		addQuakesToList(arrayQuake2);
+		// ArrayList<Earthquake> arrayQuake = earthquakeDB.selectAllBD();
+		// for (Earthquake earthquake : arrayQuake) {
+		// Log.d("NAIARA", "Id: " + earthquake.getIdStr());
+		// Log.d("NAIARA", "Place: " + earthquake.getPlace());
+		// Log.d("NAIARA", "Time: " + earthquake.getTime());
+		// Log.d("NAIARA", "Detail: " + earthquake.getDetail());
+		// Log.d("NAIARA", "Magnitude: " + earthquake.getMagnitude());
+		// Log.d("NAIARA", "Lat: " + earthquake.getLat());
+		// Log.d("NAIARA", "Long: " + earthquake.getLon());
+		// Log.d("NAIARA", "URL: " + earthquake.getUrl());
+		// }
+		//
+		// Log.d("NAIARA", "selectByMag");
+		// ArrayList<Earthquake> arrayQuake2 = earthquakeDB.selectByMag(2);
+		// for (Earthquake earthquake : arrayQuake2) {
+		// Log.d("NAIARA", "Id: " + earthquake.getIdStr());
+		// Log.d("NAIARA", "Place: " + earthquake.getPlace());
+		// Log.d("NAIARA", "Time: " + earthquake.getTime());
+		// Log.d("NAIARA", "Detail: " + earthquake.getDetail());
+		// Log.d("NAIARA", "Magnitude: " + earthquake.getMagnitude());
+		// Log.d("NAIARA", "Lat: " + earthquake.getLat());
+		// Log.d("NAIARA", "Long: " + earthquake.getLon());
+		// Log.d("NAIARA", "URL: " + earthquake.getUrl());
+		// }
+
+		// addQuakesToList(arrayQuake2);
 
 		if (savedInstanceState == null) {
 			FragmentManager fragmentManager = getFragmentManager();
@@ -105,19 +107,24 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.ListLayout) {
+			// Aqu’ abrimos un intent
+			Intent intent = new Intent(this, MyPreferenceActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-//	public void addQuakesToList(ArrayList<Earthquake> arrayQuake) {
-//		
-//		for (Earthquake earthquake : arrayQuake) {
-//			
-//			((QuakesListFragment) getFragmentManager().findFragmentByTag("ListLayout")).addElement(earthquake.getMagnitude() + ": " + earthquake.getPlace() + ": " + earthquake.getTime());
-//		}
-//		
-//
-//	}
+	// public void addQuakesToList(ArrayList<Earthquake> arrayQuake) {
+	//
+	// for (Earthquake earthquake : arrayQuake) {
+	//
+	// ((QuakesListFragment)
+	// getFragmentManager().findFragmentByTag("ListLayout")).addElement(earthquake.getMagnitude()
+	// + ": " + earthquake.getPlace() + ": " + earthquake.getTime());
+	// }
+	//
+	//
+	// }
 
 }
