@@ -30,14 +30,14 @@ public class QuakeDBOpenHelper extends SQLiteOpenHelper{
 			+ QUAKE_ID + " integer primary key autoincrement, "
 			+ ID_STR + " TEXT UNIQUE,"
 			+ PLACE + " text,"
-			+ TIME + " real, "
+			+ TIME + " datetime, "
 			+ DETAIL + " text, "
 			+ MAGNITUDE + " real," 
 			+ LAT+ " real, "
 			+ LONG+ " real, "
 			+ URL+ " text, "
-			+ CREATED_AT+ " real, "
-			+ UPDATED_AT+" real);";
+			+ CREATED_AT+ " datetime, "
+			+ UPDATED_AT+" datetime);";
 	
 	public QuakeDBOpenHelper(Context context, String name,
 			CursorFactory factory, int version) {

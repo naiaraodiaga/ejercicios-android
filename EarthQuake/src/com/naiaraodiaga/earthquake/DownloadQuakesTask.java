@@ -30,6 +30,7 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 	public DownloadQuakesTask(Context context, IQuakesList iQuakes) {
 		this.context = context;
 		this.iQuakes = iQuakes;
+		earthquakeDB = EarthQuakeDB.getDB(context);
 	}
 
 	@Override

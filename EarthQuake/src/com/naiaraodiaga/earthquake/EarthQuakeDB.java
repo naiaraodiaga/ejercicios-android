@@ -108,7 +108,7 @@ public class EarthQuakeDB {
 		// Assign values for each row.
 		newValues.put(quakeDBOpenHelper.ID_STR, quake.getIdStr());
 		newValues.put(quakeDBOpenHelper.PLACE, quake.getPlace());
-		newValues.put(quakeDBOpenHelper.TIME, quake.getTime().toString());
+		newValues.put(quakeDBOpenHelper.TIME, quake.getTime().getTime());
 		newValues.put(quakeDBOpenHelper.DETAIL, quake.getDetail());
 		newValues.put(quakeDBOpenHelper.MAGNITUDE, quake.getMagnitude());
 		newValues.put(quakeDBOpenHelper.LAT, quake.getLat());

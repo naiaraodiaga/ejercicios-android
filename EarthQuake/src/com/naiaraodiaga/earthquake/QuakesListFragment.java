@@ -19,7 +19,7 @@ import com.naiaraodiaga.earthquake.DownloadQuakesTask.IQuakesList;
 public class QuakesListFragment extends ListFragment implements IQuakesList{
 
 	private ArrayList<Earthquake> quakesList;
-	private ArrayAdapter<Earthquake> adapter;
+	private QuakeLazyAdapter adapter;
 
 
 	@Override
@@ -29,7 +29,7 @@ public class QuakesListFragment extends ListFragment implements IQuakesList{
 		EarthQuakeDB earthquakeDB = EarthQuakeDB.getDB(inflater.getContext());
 		
 		quakesList = earthquakeDB.selectByMag(0);
-		adapter = new ArrayAdapter<Earthquake>(inflater.getContext(), android.R.layout.simple_list_item_1, quakesList);
+		adapter = new QuakeLazyAdapter(getActivity(), quakesList);
 
 		setListAdapter(adapter);
 

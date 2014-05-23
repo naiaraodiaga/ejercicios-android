@@ -1,7 +1,9 @@
 package com.naiaraodiaga.earthquake;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Earthquake {
 
@@ -47,6 +49,11 @@ public class Earthquake {
 
 	public Date getTime() {
 		return time;
+	}
+	
+	public String getTimeFormated() {
+		SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss", Locale.ENGLISH);
+		return df.format(this.time);
 	}
 
 	public void setTime(Long time) {

@@ -16,7 +16,7 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:background="#5ac0cf"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"
             android:text="Mag"
             android:textSize="20sp"
             android:textStyle="bold" />

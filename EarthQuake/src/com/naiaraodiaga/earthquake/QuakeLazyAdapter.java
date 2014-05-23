@@ -11,28 +11,25 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class LazyAdapter extends BaseAdapter{
+public class QuakeLazyAdapter extends BaseAdapter{
 	private Activity activity;
-    private ArrayList<HashMap<String, String>> data;
+    private ArrayList<Earthquake> arrayQuakes;
 	private static LayoutInflater inflater = null;
-    
-	public LazyAdapter() {
-	}
 	
-	public LazyAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
+	public QuakeLazyAdapter(Activity a, ArrayList<Earthquake> arrayQuakes) {
         activity = a;
-        data=d;
+        this.arrayQuakes=arrayQuakes;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 	
 	@Override
 	public int getCount() {
-		return data.size();
+		return arrayQuakes.size();
 	}
 
 	@Override
-	public Object getItem(int position) {
-		return position;
+	public Earthquake getItem(int position) {
+		return arrayQuakes.get(position);
 	}
 
 	@Override
@@ -52,13 +49,12 @@ public class LazyAdapter extends BaseAdapter{
         TextView place = (TextView)vi.findViewById(R.id.place); 
         TextView time = (TextView)vi.findViewById(R.id.time); 
  
-        HashMap<String, String> quake = new HashMap<String, String>();
-        quake = data.get(position);
+        Earthquake quake = arrayQuakes.get(position);
  
         // Setting all values in listview
-//        mag.setText(quake.get(CustomizedListView.MAGNITUDE));
-//        place.setText(quake.get(CustomizedListView.PLACE));
-//        time.setText(quake.get(CustomizedListView.TIME));
+        mag.setText(String.valueOf(quake.getMagnitude()));
+        place.setText(quake.getPlace());
+        time.setText(quake.getTimeFormated());
         
         return vi;		
 		
