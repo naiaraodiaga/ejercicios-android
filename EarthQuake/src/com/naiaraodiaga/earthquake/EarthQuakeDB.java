@@ -50,6 +50,9 @@ public class EarthQuakeDB {
 	public ArrayList<Earthquake> selectByMag(double mag) {
 		
 		String where = quakeDBOpenHelper.MAGNITUDE + "> ?";
+		
+		Log.d("NAIARA", "BD mag: "+ String.valueOf(mag));
+		
 		String whereArgs[] = { String.valueOf(mag)};
 		Cursor cursor = db.query(quakeDBOpenHelper.getDatabaseTable(),
 				quakeDBOpenHelper.getDatabaseColumns(), where, whereArgs, null, null,

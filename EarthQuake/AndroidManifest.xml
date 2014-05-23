@@ -27,6 +27,10 @@
             android:name="com.naiaraodiaga.earthquake.MyPreferenceActivity"
             android:label="@string/title_activity_preference" >
         </activity>
+        <activity
+            android:name="com.naiaraodiaga.earthquake.EarthQuakeDetails"
+            android:label="Details" >
+        </activity>
     </application>
 
 </manifest>
