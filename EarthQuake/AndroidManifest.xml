@@ -31,7 +31,7 @@
             android:name="com.naiaraodiaga.earthquake.EarthQuakeDetails"
             android:label="Details" >
         </activity>
-        <provider android:name=".MyQuakeProvider" android:permission="com.naiaraodiaga.provider.earthquakeprovider" android:authorities="com.naiaraodiaga.earthquake.authority"></provider>
+        <provider android:name=".MyContentProvider" android:authorities="com.naiaraodiaga.provider.earthquakeprovider"></provider>
     </application>
 
 </manifest>

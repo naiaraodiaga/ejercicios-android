@@ -42,8 +42,7 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 			try {
 				earthquakeList = downloadQuakes(params[i]);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.d("NAIARA", "ERROR - DownloadQuakesTask: "+e.getMessage());
 			}
 		}
 
