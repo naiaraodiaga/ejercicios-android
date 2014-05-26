@@ -1,4 +1,4 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 
 import android.content.SharedPreferences;

@@ -1,7 +1,6 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;

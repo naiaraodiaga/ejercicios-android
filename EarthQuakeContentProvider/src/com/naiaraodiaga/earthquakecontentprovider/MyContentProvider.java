@@ -1,4 +1,4 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -35,15 +35,15 @@ public class MyContentProvider extends ContentProvider {
 	public static final String UPDATED_AT = "updated_at";
 
 	public static final Uri CONTENT_URI = Uri
-			.parse("content://com.naiaraodiaga.provider.earthquakeprovider/earthquakes");
+			.parse("content://com.naiaraodiaga.provider.earthquakecontentprovider/earthquakes");
 
 	private static final UriMatcher uriMatcher;
 
 	static {
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-		uriMatcher.addURI("com.naiaraodiaga.provider.earthquakeprovider",
+		uriMatcher.addURI("com.naiaraodiaga.provider.earthquakecontentprovider",
 				"earthquakes", ALLROWS);
-		uriMatcher.addURI("com.naiaraodiaga.provider.earthquakeprovider",
+		uriMatcher.addURI("com.naiaraodiaga.provider.earthquakecontentprovider",
 				"earthquakes/0", SINGLE_ROW);
 	}
 
@@ -76,9 +76,9 @@ public class MyContentProvider extends ContentProvider {
 
 		switch (uriMatcher.match(uri)) {
 		case ALLROWS:
-			return "vnd.android.cursor.dir/vnd.naiaraodiaga.provider.earthquake";
+			return "vnd.android.cursor.dir/vnd.naiaraodiaga.provider.earthquakecontentprovider";
 		case SINGLE_ROW:
-			return "vnd.android.cursor.item/vnd.naiaraodiaga.provider.earthquake";
+			return "vnd.android.cursor.item/vnd.naiaraodiaga.provider.earthquakecontentprovider";
 		default:
 			throw new IllegalArgumentException("Unsupported URI: " + uri);
 		}

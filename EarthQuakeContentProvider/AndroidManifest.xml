@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.naiaraodiaga.earthquake"
+    package="com.naiaraodiaga.earthquakecontentprovider"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.naiaraodiaga.earthquake.MainActivity"
+            android:name="com.naiaraodiaga.earthquakecontentprovider.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,14 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.naiaraodiaga.earthquake.MyPreferenceActivity"
+            android:name="com.naiaraodiaga.earthquakecontentprovider.MyPreferenceActivity"
             android:label="@string/title_activity_preference" >
         </activity>
         <activity
-            android:name="com.naiaraodiaga.earthquake.EarthQuakeDetails"
+            android:name="com.naiaraodiaga.earthquakecontentprovider.EarthQuakeDetails"
             android:label="Details" >
         </activity>
-        <provider android:name=".MyContentProvider" android:authorities="com.naiaraodiaga.provider.earthquakeprovider"></provider>
+        <provider android:name=".MyContentProvider" android:authorities="com.naiaraodiaga.provider.earthquakecontentprovider"></provider>
     </application>
 
 </manifest>

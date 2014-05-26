@@ -1,4 +1,4 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

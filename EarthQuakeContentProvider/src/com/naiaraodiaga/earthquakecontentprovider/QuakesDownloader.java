@@ -1,4 +1,4 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,8 +15,6 @@ import org.json.JSONObject;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class QuakesDownloader {

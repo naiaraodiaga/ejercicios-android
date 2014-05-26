@@ -1,12 +1,9 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 import java.util.ArrayList;
 
-import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,11 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import com.naiaraodiaga.earthquake.DownloadQuakesTask.IQuakesList;
+import com.naiaraodiaga.earthquakecontentprovider.DownloadQuakesTask.IQuakesList;
 
 public class QuakesListFragment extends ListFragment implements IQuakesList {
 

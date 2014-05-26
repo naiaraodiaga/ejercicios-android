@@ -1,4 +1,4 @@
-package com.naiaraodiaga.earthquake;
+package com.naiaraodiaga.earthquakecontentprovider;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

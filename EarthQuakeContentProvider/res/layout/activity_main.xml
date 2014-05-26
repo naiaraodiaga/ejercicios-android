@@ -3,13 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.naiaraodiaga.earthquake.MainActivity"
-    tools:ignore="MergeRootFrame">
-
-<ListView
-        android:id="@+id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:divider="#b5b5b5"
-        android:dividerHeight="1dp" />
-</FrameLayout>
+    tools:context="com.naiaraodiaga.earthquakecontentprovider.MainActivity"
+    tools:ignore="MergeRootFrame" />
