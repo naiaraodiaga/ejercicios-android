@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/REFRESH_INTERVAL" >
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/AUTOREFRESH_KEY"
+            android:summary="@string/autorefresh_pref"
+            android:title="@string/autorefresh_title" />
+
+        <ListPreference
+            android:entries="@array/intervalArray"
+            android:entryValues="@array/intervalArrayValues"
+            android:key="@string/INTERVAL_KEY"
+            android:title="@string/interval_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/EARTHQUAKE" >
+        <ListPreference
+            android:entries="@array/earthquakeArray"
+            android:entryValues="@array/earthquakeArrayValues"
+            android:key="@string/MAG_KEY"
+            android:title="@string/magnitude_title" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/CONNECTIVITY" >
+        <Preference android:title="@string/wifi" >
+    		<intent android:action="android.settings.WIFI_SETTINGS" />
+		</Preference>
+		<Preference android:title="@string/data" >
+    		<intent android:action="android.settings.DATA_ROAMING_SETTINGS" />
+		</Preference>
+		<Preference android:title="@string/display" >
+    		<intent android:action="android.settings.DISPLAY_SETTINGS" />
+		</Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>
