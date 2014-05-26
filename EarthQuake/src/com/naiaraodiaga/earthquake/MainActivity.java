@@ -93,47 +93,7 @@ public class MainActivity extends Activity {
 			fragmentTransaction.add(R.id.container, new QuakesListFragment());
 			fragmentTransaction.commit();
 		}
-//		
-		
-		
-//		public static final String QUAKE_ID = "_id";
-//		public static final String ID_STR = "id_str";
-//		public static final String PLACE = "place";
-//		public static final String TIME = "time";
-//		public static final String DETAIL = "detail";
-//		public static final String MAGNITUDE = "magnitude";
-//		public static final String LAT = "lat";
-//		public static final String LONG = "long";
-//		public static final String URL = "url";
-//		public static final String CREATED_AT = "created_at";
-//		public static final String UPDATED_AT = "updated_at";
-		
-		ContentResolver cr = getContentResolver();
-		String[] result_columns = new String[] {
-			    MyContentProvider.QUAKE_ID,
-			    MyContentProvider.ID_STR,
-			    MyContentProvider.PLACE,
-			    MyContentProvider.TIME,
-			    MyContentProvider.DETAIL,
-			    MyContentProvider.MAGNITUDE,
-			    MyContentProvider.LAT,
-			    MyContentProvider.LONG,
-			    MyContentProvider.URL,
-			    MyContentProvider.CREATED_AT,
-			    MyContentProvider.UPDATED_AT
-			    };
-		
-		
-		String where = null;
-		String whereArgs[] = null;
-		String order = null;
-		
-		Cursor resultCursor = cr.query(MyContentProvider.CONTENT_URI, result_columns,
-                where, whereArgs, order);
-		
-		while (resultCursor.moveToNext()) {
-			Log.d("NAIARA", resultCursor.getString(resultCursor.getColumnIndex(MyContentProvider.PLACE)));
-		}
+	
 	}
 
 	@Override
