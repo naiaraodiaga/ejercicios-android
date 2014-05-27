@@ -23,17 +23,23 @@ import android.util.Log;
 
 public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Earthquake>>{
 
-	public interface IQuakesList {
-		public void refreshQuakesList(ArrayList<Earthquake> earthquake);
-	}
+//	public interface IQuakesList {
+//		public void refreshQuakesList(ArrayList<Earthquake> earthquake);
+//	}
 	
 //	private EarthQuakeDB earthquakeDB;
 	private Context context;
-	private IQuakesList iQuakes;
+//	private IQuakesList iQuakes;
 	
-	public DownloadQuakesTask(Context context, IQuakesList iQuakes) {
+//	public DownloadQuakesTask(Context context, IQuakesList iQuakes) {
+//		this.context = context;
+////		this.iQuakes = iQuakes;
+////		earthquakeDB = EarthQuakeDB.getDB(context);
+//	}
+	
+	public DownloadQuakesTask(Context context) {
 		this.context = context;
-		this.iQuakes = iQuakes;
+//		this.iQuakes = iQuakes;
 //		earthquakeDB = EarthQuakeDB.getDB(context);
 	}
 
@@ -58,7 +64,7 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 	@Override
 	protected void onPostExecute(ArrayList<Earthquake> result) {
 		super.onPostExecute(result);
-		iQuakes.refreshQuakesList(result);
+//		iQuakes.refreshQuakesList(result);
 	}
 
 	
@@ -135,7 +141,6 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 		
 		Date currentDate = new Date();
 		
-		newValues.put(MyContentProvider.QUAKE_ID, quake.get_id());
 		newValues.put(MyContentProvider.ID_STR, quake.getIdStr());
 		newValues.put(MyContentProvider.PLACE, quake.getPlace());
 		newValues.put(MyContentProvider.TIME, quake.getTime().getTime());
