@@ -18,7 +18,8 @@ public class EarthQuakeViewBinder implements ViewBinder {
 			SimpleDateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss", Locale.ENGLISH);
 			String date = df.format(c.getLong(time_idxz));
 			
-			((TextView)view.findViewById(R.id.time)).setText(date);
+//			((TextView)view.findViewById(R.id.time)).setText(date);
+			((TextView) view).setText(date);
 			
 			return true;
 		}

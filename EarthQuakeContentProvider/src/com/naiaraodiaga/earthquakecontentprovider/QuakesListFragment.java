@@ -3,8 +3,10 @@ package com.naiaraodiaga.earthquakecontentprovider;
 import java.util.ArrayList;
 
 import android.app.ListFragment;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,16 +19,17 @@ import android.widget.SimpleCursorAdapter;
 
 import com.naiaraodiaga.earthquakecontentprovider.DownloadQuakesTask.IQuakesList;
 
-public class QuakesListFragment extends ListFragment implements IQuakesList {
+public class QuakesListFragment extends ListFragment implements IQuakesList, LoaderCallbacks<Cursor>{
 
 	// private ArrayList<Earthquake> quakesList;
 	// private QuakeLazyAdapter adapter;
 	private SimpleCursorAdapter adapter;
+	private static int QUAKES_LIST = 1;
 
 	private String[] from = { MyContentProvider.MAGNITUDE,
 			MyContentProvider.PLACE,
 			MyContentProvider.TIME,
-			MyContentProvider.QUAKE_ID };
+			MyContentProvider.QUAKE_ID }; 	// IMPORTANTE poner el id al final
 	private int[] to = { R.id.magnitude, R.id.place, R.id.time };
 
 	@Override
@@ -39,15 +42,17 @@ public class QuakesListFragment extends ListFragment implements IQuakesList {
 		
 
 		adapter = new SimpleCursorAdapter(getActivity(),
-				R.layout.list_row_fragment, null, from, to, 0);
+				R.layout.list_row_fragment, null, from, to, 0);  // Pasamos el cursor vac’o porque aœn no queremos mostrar datos
 
+		getLoaderManager().initLoader(QUAKES_LIST, null, this);
+		
 		// earthquakeList.addAll(db.query(Double.parseDouble(mag)));
 
 		// quakesList = earthquakeDB.selectByMag(Double.parseDouble(mag));
 
 		// adapter = new QuakeLazyAdapter(getActivity(), quakesList);
 
-		setListAdapter(adapter);
+//		setListAdapter(adapter);			// Si no ponemos el setListAdapter, pondr‡ loading... Lo ideal es poner el setListAdapter cuando se cargue la lista
 		adapter.setViewBinder(new EarthQuakeViewBinder());
 
 		return super.onCreateView(inflater, container, savedInstanceState);
@@ -73,7 +78,7 @@ public class QuakesListFragment extends ListFragment implements IQuakesList {
 	}
 
 	@Override
-	public void onResume() {
+	public void onResume() { // Justo antes de obtener la vista, mostramos los datos
 		super.onResume();
 
 		String mag = PreferenceManager.getDefaultSharedPreferences(
@@ -95,17 +100,39 @@ public class QuakesListFragment extends ListFragment implements IQuakesList {
 					.getColumnIndex(MyContentProvider.PLACE)));
 		}
 
-		adapter.swapCursor(resultCursor); // Esto es como el notifyChanges
+		adapter.swapCursor(resultCursor); 	// Esto es como el notifyChanges, le decimos al adaptador el cursor que tiene que pintar
+		setListAdapter(adapter); 			// Ponemos el setListAdapter porque en cuanto se cargue la lista, hay que notificar el cambio
 	}
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		// Earthquake quake = this.adapter.getItem(position);
 		// String idStr = quake.getIdStr();
-		//
+		Log.d("NAIARA", "LIST - id: "+id);
+		Log.d("NAIARA", "LIST - position: "+position);
+		Log.d("NAIARA", "LIST - view: "+v);
+		Log.d("NAIARA", "LIST - listview: "+l);
 		 Intent intent = new Intent(getActivity(), EarthQuakeDetails.class);
 		 intent.putExtra("id", id);
 		 startActivity(intent);
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

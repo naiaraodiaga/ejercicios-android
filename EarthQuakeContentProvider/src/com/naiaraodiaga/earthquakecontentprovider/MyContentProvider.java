@@ -33,6 +33,10 @@ public class MyContentProvider extends ContentProvider {
 	public static final String URL = "url";
 	public static final String CREATED_AT = "created_at";
 	public static final String UPDATED_AT = "updated_at";
+	
+	public final String[] DATABASE_COLUMNS = new String[] { QUAKE_ID,
+			ID_STR, PLACE, TIME, DETAIL, MAGNITUDE, LAT, LONG, URL,
+			CREATED_AT, UPDATED_AT };
 
 	public static final Uri CONTENT_URI = Uri
 			.parse("content://com.naiaraodiaga.provider.earthquakecontentprovider/earthquakes");
@@ -141,6 +145,8 @@ public class MyContentProvider extends ContentProvider {
 			Cursor cursor = queryBuilder.query(db, projection, selection,
 					selectionArgs, groupBy, having, sortOrder);
 
+			cursor.setNotificationUri(getContext().getContentResolver(), uri);
+			
 			return cursor;
 
 		} catch (SQLiteException ex) {
@@ -181,11 +187,6 @@ public class MyContentProvider extends ContentProvider {
 		private static final String DATABASE_TABLE = "Quakes";
 		public static final int DATABASE_VERSION = 1;
 
-		
-
-		public final String[] DATABASE_COLUMNS = new String[] { QUAKE_ID,
-				ID_STR, PLACE, TIME, DETAIL, MAGNITUDE, LAT, LONG, URL,
-				CREATED_AT, UPDATED_AT };
 
 		private static final String DATABASE_CREATE = "create table if not exists "
 				+ DATABASE_TABLE
