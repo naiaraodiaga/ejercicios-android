@@ -81,32 +81,32 @@ public class MainActivity extends Activity {
 		
 
 		
-		ContentResolver cr = getContentResolver();
-		String[] result_columns = new String[] {
-			    MyContentProvider.QUAKE_ID,
-			    MyContentProvider.ID_STR,
-			    MyContentProvider.PLACE,
-			    MyContentProvider.TIME,
-			    MyContentProvider.DETAIL,
-			    MyContentProvider.MAGNITUDE,
-			    MyContentProvider.LAT,
-			    MyContentProvider.LONG,
-			    MyContentProvider.URL,
-			    MyContentProvider.CREATED_AT,
-			    MyContentProvider.UPDATED_AT
-			    };
-		
-		
-		String where = null;
-		String whereArgs[] = null;
-		String order = null;
-		
-		Cursor resultCursor = cr.query(MyContentProvider.CONTENT_URI, result_columns,
-                where, whereArgs, order);
-		
-		while (resultCursor.moveToNext()) {
-			Log.d("NAIARA", resultCursor.getString(resultCursor.getColumnIndex(MyContentProvider.PLACE)));
-		}
+//		ContentResolver cr = getContentResolver();
+//		String[] result_columns = new String[] {
+//			    MyContentProvider.QUAKE_ID,
+//			    MyContentProvider.ID_STR,
+//			    MyContentProvider.PLACE,
+//			    MyContentProvider.TIME,
+//			    MyContentProvider.DETAIL,
+//			    MyContentProvider.MAGNITUDE,
+//			    MyContentProvider.LAT,
+//			    MyContentProvider.LONG,
+//			    MyContentProvider.URL,
+//			    MyContentProvider.CREATED_AT,
+//			    MyContentProvider.UPDATED_AT
+//			    };
+//		
+//		
+//		String where = null;
+//		String whereArgs[] = null;
+//		String order = null;
+//		
+//		Cursor resultCursor = cr.query(MyContentProvider.CONTENT_URI, result_columns,
+//                where, whereArgs, order);
+//		
+//		while (resultCursor.moveToNext()) {
+//			Log.d("NAIARA", resultCursor.getString(resultCursor.getColumnIndex(MyContentProvider.PLACE)));
+//		}
 	}
 
 	@Override

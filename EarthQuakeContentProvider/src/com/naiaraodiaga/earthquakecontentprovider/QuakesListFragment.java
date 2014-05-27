@@ -23,6 +23,8 @@ public class QuakesListFragment extends ListFragment implements
 	// private QuakeLazyAdapter adapter;
 	private SimpleCursorAdapter adapter;
 	private static int QUAKES_LIST = 1;
+	
+	String mag = "0";
 
 	private String[] from = { MyContentProvider.MAGNITUDE,
 			MyContentProvider.PLACE, MyContentProvider.TIME,
@@ -83,33 +85,37 @@ public class QuakesListFragment extends ListFragment implements
 								// datos
 		super.onResume();
 
-		// String mag = PreferenceManager.getDefaultSharedPreferences(
-		// getActivity()).getString(
-		// getActivity().getString(R.string.MAG_KEY), "0");
-		// Log.d("NAIARA", "mag: " + mag);
-		//
-		// ContentResolver cr = getActivity().getContentResolver();
-		//
-		// String where = MyContentProvider.MAGNITUDE + " >= ?";
-		// String whereArgs[] = { mag };
-		// String order = null;
-		//
-		// Cursor resultCursor = cr.query(MyContentProvider.CONTENT_URI, from,
-		// where, whereArgs, order);
-		//
-		// while (resultCursor.moveToNext()) {
-		// Log.d("NAIARA", resultCursor.getString(resultCursor
-		// .getColumnIndex(MyContentProvider.PLACE)));
-		// }
-		//
-		// adapter.swapCursor(resultCursor); // Esto es como el notifyChanges,
-		// le
-		// // decimos al adaptador el cursor
-		// // que tiene que pintar
-		// setListAdapter(adapter); // Ponemos el setListAdapter porque en
-		// cuanto
-		// // se cargue la lista, hay que notificar el
-		// // cambio
+		
+		getLoaderManager().restartLoader(QUAKES_LIST, null, this); // Reiniciamos el loader para que coja todos los cambios
+		 
+		 
+//		mag = PreferenceManager.getDefaultSharedPreferences(
+//				 getActivity()).getString(
+//				 getActivity().getString(R.string.MAG_KEY), "0");
+//		 Log.d("NAIARA", "mag: " + mag);
+//		
+//		 ContentResolver cr = getActivity().getContentResolver();
+//		
+//		 String where = MyContentProvider.MAGNITUDE + " >= ?";
+//		 String whereArgs[] = { mag };
+//		 String order = null;
+//		
+//		 Cursor resultCursor = cr.query(MyContentProvider.CONTENT_URI, from,
+//		 where, whereArgs, order);
+//		
+//		 while (resultCursor.moveToNext()) {
+//		 Log.d("NAIARA", resultCursor.getString(resultCursor
+//		 .getColumnIndex(MyContentProvider.PLACE)));
+//		 }
+//		
+//		 adapter.swapCursor(resultCursor); // Esto es como el notifyChanges,
+//		 le
+//		 // decimos al adaptador el cursor
+//		 // que tiene que pintar
+//		 setListAdapter(adapter); // Ponemos el setListAdapter porque en
+//		 cuanto
+//		 // se cargue la lista, hay que notificar el
+//		 // cambio
 	}
 
 	@Override
@@ -128,7 +134,7 @@ public class QuakesListFragment extends ListFragment implements
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-		String mag = PreferenceManager.getDefaultSharedPreferences(
+		mag = PreferenceManager.getDefaultSharedPreferences(
 				getActivity()).getString(
 				getActivity().getString(R.string.MAG_KEY), "0");
 		Log.d("NAIARA", "mag: " + mag);

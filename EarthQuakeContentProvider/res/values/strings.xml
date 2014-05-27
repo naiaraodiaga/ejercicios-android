@@ -18,5 +18,12 @@
     <string name="wifi">WIFI</string>
     <string name="data">Data settings</string>
     <string name="display">Display Settings </string>
+    <string name="magnitude_label">"Magnitude: "</string>
+    <string name="place_label">"Place: "</string>
+    <string name="time_label">"Time: "</string>
+    <string name="detail_label">"Detail: "</string>
+    <string name="lat_label">"Latitude: "</string>
+    <string name="long_label">"Longitude: "</string>
+    <string name="url_label">"URL: "</string>
 
 </resources>

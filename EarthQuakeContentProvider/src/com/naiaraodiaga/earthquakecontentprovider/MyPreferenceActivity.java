@@ -42,5 +42,5 @@ public class MyPreferenceActivity extends PreferenceActivity implements
 			Log.d("NAIARA", "prefs: "+prefs.getString(key, "15"));
 		}
 	}
-
+	
 }
