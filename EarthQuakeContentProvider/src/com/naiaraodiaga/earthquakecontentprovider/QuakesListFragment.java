@@ -60,7 +60,7 @@ public class QuakesListFragment extends ListFragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+                           
 		// adapter.notifyDataSetChanged();
 
 		this.refreshEarthQuakes();

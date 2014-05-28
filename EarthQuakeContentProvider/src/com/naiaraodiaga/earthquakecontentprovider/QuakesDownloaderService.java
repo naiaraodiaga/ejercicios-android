@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -26,7 +27,6 @@ import android.util.Log;
 
 public class QuakesDownloaderService extends Service {
 
-	
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
@@ -45,8 +45,10 @@ public class QuakesDownloaderService extends Service {
 		startBackgroundTask(intent, startId);
 
 		Log.d("NAIARA", "QuakesDownloaderService - onStartCommand");
-		
+
 		return Service.START_STICKY;
+
+//		return super.onStartCommand(intent, flags, startId);
 	}
 
 	private void startBackgroundTask(Intent intent, int startId) {
@@ -54,10 +56,11 @@ public class QuakesDownloaderService extends Service {
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				
+
 				Log.d("NAIARA", "QuakesDownloaderService - startBackgroundTask");
 				try {
 					downloadQuakes(getString(R.string.Ruta));
+					stopSelf();
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -66,9 +69,9 @@ public class QuakesDownloaderService extends Service {
 		t.start();
 
 	}
-	
-	
-	private ArrayList<Earthquake> downloadQuakes(String ruta) throws JSONException {
+
+	private ArrayList<Earthquake> downloadQuakes(String ruta)
+			throws JSONException {
 		ArrayList<Earthquake> earthquakeList = new ArrayList<Earthquake>();
 		try {
 			URL url = new URL(ruta);
@@ -89,10 +92,11 @@ public class QuakesDownloaderService extends Service {
 		}
 		return earthquakeList;
 	}
-	
-	private ArrayList<Earthquake> processStream(InputStream in) throws IOException, JSONException {
+
+	private ArrayList<Earthquake> processStream(InputStream in)
+			throws IOException, JSONException {
 		ArrayList<Earthquake> earthquakeList = new ArrayList<Earthquake>();
-		
+
 		JSONObject json = new JSONObject();
 		JSONArray quakesArray = new JSONArray();
 
@@ -101,7 +105,7 @@ public class QuakesDownloaderService extends Service {
 		StringBuilder sb = new StringBuilder();
 		String line = null;
 
-		try{
+		try {
 			while ((line = bf.readLine()) != null) {
 				sb.append(line);
 			}
@@ -110,35 +114,41 @@ public class QuakesDownloaderService extends Service {
 			quakesArray = json.getJSONArray("features");
 			for (int i = 0; i < quakesArray.length(); i++) {
 				Earthquake quake = new Earthquake();
-				
+
 				JSONObject jsonQuake = quakesArray.getJSONObject(i);
 				quake.setIdStr(jsonQuake.getString("id"));
-				quake.setPlace(jsonQuake.getJSONObject("properties").getString("place"));
-				quake.setTime(jsonQuake.getJSONObject("properties").getLong("time"));
-				quake.setDetail(jsonQuake.getJSONObject("properties").getString("detail"));
-				quake.setMagnitude(jsonQuake.getJSONObject("properties").getDouble("mag"));
-				quake.setLat(jsonQuake.getJSONObject("geometry").getJSONArray("coordinates").getDouble(1));
-				quake.setLon(jsonQuake.getJSONObject("geometry").getJSONArray("coordinates").getDouble(0));
-				quake.setUrl(jsonQuake.getJSONObject("properties").getString("url"));
-				
+				quake.setPlace(jsonQuake.getJSONObject("properties").getString(
+						"place"));
+				quake.setTime(jsonQuake.getJSONObject("properties").getLong(
+						"time"));
+				quake.setDetail(jsonQuake.getJSONObject("properties")
+						.getString("detail"));
+				quake.setMagnitude(jsonQuake.getJSONObject("properties")
+						.getDouble("mag"));
+				quake.setLat(jsonQuake.getJSONObject("geometry")
+						.getJSONArray("coordinates").getDouble(1));
+				quake.setLon(jsonQuake.getJSONObject("geometry")
+						.getJSONArray("coordinates").getDouble(0));
+				quake.setUrl(jsonQuake.getJSONObject("properties").getString(
+						"url"));
+
 				insertQuake(quake);
-				
+
 				earthquakeList.add(quake);
 			}
-			
+
 			Log.d("NAIARA", " *** JSON processed ***");
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			Log.d("NAIARA", "ERROR - QuakesDownloaderService (processStream)");
 		}
 		return earthquakeList;
 	}
-	
+
 	private void insertQuake(Earthquake quake) {
 		ContentValues newValues = new ContentValues();
-		
+
 		Date currentDate = new Date();
-		
+
 		newValues.put(MyContentProvider.ID_STR, quake.getIdStr());
 		newValues.put(MyContentProvider.PLACE, quake.getPlace());
 		newValues.put(MyContentProvider.TIME, quake.getTime().getTime());
@@ -149,9 +159,9 @@ public class QuakesDownloaderService extends Service {
 		newValues.put(MyContentProvider.URL, quake.getUrl());
 		newValues.put(MyContentProvider.CREATED_AT, currentDate.getTime());
 		newValues.put(MyContentProvider.UPDATED_AT, currentDate.getTime());
-		
+
 		ContentResolver cr = this.getContentResolver();
-		
+
 		Uri myRowUri = cr.insert(MyContentProvider.CONTENT_URI, newValues);
 
 	}
