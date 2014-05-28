@@ -34,9 +34,12 @@ public class MyContentProvider extends ContentProvider {
 	public static final String CREATED_AT = "created_at";
 	public static final String UPDATED_AT = "updated_at";
 	
-	public final String[] DATABASE_COLUMNS = new String[] { QUAKE_ID,
-			ID_STR, PLACE, TIME, DETAIL, MAGNITUDE, LAT, LONG, URL,
-			CREATED_AT, UPDATED_AT };
+//	public static final String[] DATABASE_COLUMNS = new String[] { QUAKE_ID,
+//		ID_STR, PLACE, TIME, DETAIL, MAGNITUDE, LAT, LONG, URL,
+//		CREATED_AT, UPDATED_AT };
+	
+	public static final String[] DATABASE_COLUMNS = new String[] {MAGNITUDE,  
+			PLACE, TIME, DETAIL, LAT, LONG, URL};
 
 	public static final Uri CONTENT_URI = Uri
 			.parse("content://com.naiaraodiaga.provider.earthquakecontentprovider/earthquakes");
