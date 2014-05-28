@@ -45,11 +45,6 @@ public class QuakesListFragment extends ListFragment implements
 																// queremos
 																// mostrar datos
 
-		// earthquakeList.addAll(db.query(Double.parseDouble(mag)));
-
-		// quakesList = earthquakeDB.selectByMag(Double.parseDouble(mag));
-
-		// adapter = new QuakeLazyAdapter(getActivity(), quakesList);
 
 		// setListAdapter(adapter); // Si no ponemos el setListAdapter, pondr‡
 		// loading... Lo ideal es poner el setListAdapter cuando se cargue la
@@ -61,13 +56,6 @@ public class QuakesListFragment extends ListFragment implements
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
-	// @Override
-	// public void refreshQuakesList(ArrayList<Earthquake> earthquake) {
-	// // quakesList.addAll(earthquake);
-	// // adapter.notifyDataSetChanged();
-	// Log.d("NAIARA", "refreshQuakesList");
-	//
-	// }
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -75,9 +63,16 @@ public class QuakesListFragment extends ListFragment implements
 
 		// adapter.notifyDataSetChanged();
 
-		new DownloadQuakesTask(getActivity()).execute(getString(R.string.Ruta));
+		this.refreshEarthQuakes();
 
 		getLoaderManager().initLoader(QUAKES_LIST, null, this);
+	}
+	
+	public void refreshEarthQuakes() {
+//		new DownloadQuakesTask(getActivity()).execute(getString(R.string.Ruta));
+		
+		Intent intent = new Intent(getActivity(), QuakesDownloaderService.class);
+		getActivity().startService(intent);
 	}
 
 	@Override
@@ -88,34 +83,6 @@ public class QuakesListFragment extends ListFragment implements
 		
 		getLoaderManager().restartLoader(QUAKES_LIST, null, this); // Reiniciamos el loader para que coja todos los cambios
 		 
-		 
-//		mag = PreferenceManager.getDefaultSharedPreferences(
-//				 getActivity()).getString(
-//				 getActivity().getString(R.string.MAG_KEY), "0");
-//		 Log.d("NAIARA", "mag: " + mag);
-//		
-//		 ContentResolver cr = getActivity().getContentResolver();
-//		
-//		 String where = MyContentProvider.MAGNITUDE + " >= ?";
-//		 String whereArgs[] = { mag };
-//		 String order = null;
-//		
-//		 Cursor resultCursor = cr.query(MyContentProvider.CONTENT_URI, from,
-//		 where, whereArgs, order);
-//		
-//		 while (resultCursor.moveToNext()) {
-//		 Log.d("NAIARA", resultCursor.getString(resultCursor
-//		 .getColumnIndex(MyContentProvider.PLACE)));
-//		 }
-//		
-//		 adapter.swapCursor(resultCursor); // Esto es como el notifyChanges,
-//		 le
-//		 // decimos al adaptador el cursor
-//		 // que tiene que pintar
-//		 setListAdapter(adapter); // Ponemos el setListAdapter porque en
-//		 cuanto
-//		 // se cargue la lista, hay que notificar el
-//		 // cambio
 	}
 
 	@Override
@@ -143,7 +110,7 @@ public class QuakesListFragment extends ListFragment implements
 
 		String where = MyContentProvider.MAGNITUDE + " >= ?";
 		String whereArgs[] = { mag };
-		String order = null;
+		String order = MyContentProvider.TIME + " DESC";
 
 		CursorLoader cursorLoader = new CursorLoader(getActivity(),
 				MyContentProvider.CONTENT_URI, from, where, whereArgs, order);

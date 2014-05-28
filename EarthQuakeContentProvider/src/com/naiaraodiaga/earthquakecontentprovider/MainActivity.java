@@ -74,7 +74,7 @@ public class MainActivity extends Activity {
 			FragmentManager fragmentManager = getFragmentManager();
 			FragmentTransaction fragmentTransaction = fragmentManager
 					.beginTransaction();
-			fragmentTransaction.add(R.id.container, new QuakesListFragment());
+			fragmentTransaction.add(R.id.container, new QuakesListFragment(), "list");
 			fragmentTransaction.commit();
 		}
 		
@@ -128,6 +128,8 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(this, MyPreferenceActivity.class);
 			startActivity(intent);
 			return true;
+		} else if(id == R.id.refresh_button) {
+			((QuakesListFragment)getFragmentManager().findFragmentByTag("list")).refreshEarthQuakes();
 		}
 		return super.onOptionsItemSelected(item);
 	}

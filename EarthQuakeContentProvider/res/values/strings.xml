@@ -25,5 +25,6 @@
     <string name="lat_label">"Latitude: "</string>
     <string name="long_label">"Longitude: "</string>
     <string name="url_label">"URL: "</string>
+    <string name="refresh">Refresh</string>
 
 </resources>

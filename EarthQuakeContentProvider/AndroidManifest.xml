@@ -31,6 +31,7 @@
             android:label="Details" >
         </activity>
         <provider android:name=".MyContentProvider" android:authorities="com.naiaraodiaga.provider.earthquakecontentprovider"></provider>
+        <service android:enabled="true" android:name=".QuakesDownloaderService" android:permission="com.naiaraodiaga.MY_SERVICE_PERMISSION"/>
     </application>
 
 </manifest>

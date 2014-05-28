@@ -14,46 +14,61 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Service;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.os.IBinder;
 import android.util.Log;
 
-public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Earthquake>>{
+public class QuakesDownloaderService extends Service {
 
-	private Context context;
 	
-	public DownloadQuakesTask(Context context) {
-		this.context = context;
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	protected ArrayList<Earthquake> doInBackground(String... params) {
+	public void onCreate() {
+		super.onCreate();
+
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+
+		startBackgroundTask(intent, startId);
+
+		Log.d("NAIARA", "QuakesDownloaderService - onStartCommand");
 		
-		ArrayList<Earthquake> earthquakeList = new ArrayList<Earthquake>();
-		int count = params.length;
-		for (int i = 0; i < count; i++) {
-			try {
-				earthquakeList = downloadQuakes(params[i]);
-			} catch (JSONException e) {
-				Log.d("NAIARA", "ERROR - DownloadQuakesTask: "+e.getMessage());
+		return Service.START_STICKY;
+	}
+
+	private void startBackgroundTask(Intent intent, int startId) {
+
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+				Log.d("NAIARA", "QuakesDownloaderService - startBackgroundTask");
+				try {
+					downloadQuakes(getString(R.string.Ruta));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
-		}
+		});
+		t.start();
 
-		return earthquakeList;
 	}
 	
-
 	
-	@Override
-	protected void onPostExecute(ArrayList<Earthquake> result) {
-		super.onPostExecute(result);
-	}
-
-	
-	public ArrayList<Earthquake> downloadQuakes(String ruta) throws JSONException {
+	private ArrayList<Earthquake> downloadQuakes(String ruta) throws JSONException {
 		ArrayList<Earthquake> earthquakeList = new ArrayList<Earthquake>();
 		try {
 			URL url = new URL(ruta);
@@ -75,7 +90,7 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 		return earthquakeList;
 	}
 	
-	public ArrayList<Earthquake> processStream(InputStream in) throws IOException, JSONException {
+	private ArrayList<Earthquake> processStream(InputStream in) throws IOException, JSONException {
 		ArrayList<Earthquake> earthquakeList = new ArrayList<Earthquake>();
 		
 		JSONObject json = new JSONObject();
@@ -114,12 +129,12 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 			Log.d("NAIARA", " *** JSON processed ***");
 		}
 		catch(Exception e){
-			Log.d("NAIARA", "ERROR - DownloadQuakesTask (processStream)");
+			Log.d("NAIARA", "ERROR - QuakesDownloaderService (processStream)");
 		}
 		return earthquakeList;
 	}
-
-	public void insertQuake(Earthquake quake) {
+	
+	private void insertQuake(Earthquake quake) {
 		ContentValues newValues = new ContentValues();
 		
 		Date currentDate = new Date();
@@ -135,7 +150,7 @@ public class DownloadQuakesTask extends AsyncTask<String, Integer, ArrayList<Ear
 		newValues.put(MyContentProvider.CREATED_AT, currentDate.getTime());
 		newValues.put(MyContentProvider.UPDATED_AT, currentDate.getTime());
 		
-		ContentResolver cr = context.getContentResolver();
+		ContentResolver cr = this.getContentResolver();
 		
 		Uri myRowUri = cr.insert(MyContentProvider.CONTENT_URI, newValues);
 
