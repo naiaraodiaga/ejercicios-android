@@ -21,9 +21,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class QuakesDownloaderService extends Service {
 
@@ -53,20 +56,27 @@ public class QuakesDownloaderService extends Service {
 
 	private void startBackgroundTask(Intent intent, int startId) {
 
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
+		if(this.deviceIsOnline()){
+			Thread t = new Thread(new Runnable() {
+				@Override
+				public void run() {
 
-				Log.d("NAIARA", "QuakesDownloaderService - startBackgroundTask");
-				try {
-					downloadQuakes(getString(R.string.Ruta));
-					stopSelf();
-				} catch (JSONException e) {
-					e.printStackTrace();
+					Log.d("NAIARA", "QuakesDownloaderService - startBackgroundTask");
+					try {
+						downloadQuakes(getString(R.string.Ruta));
+						stopSelf();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-		});
-		t.start();
+			});
+			t.start();
+		}
+		else{
+			Toast toast = Toast.makeText(this, "No connectivity", Toast.LENGTH_LONG);
+			toast.show();
+		}
+		
 
 	}
 
@@ -164,5 +174,19 @@ public class QuakesDownloaderService extends Service {
 
 		Uri myRowUri = cr.insert(MyContentProvider.CONTENT_URI, newValues);
 
+	}
+	
+	
+	public boolean deviceIsOnline() {
+		ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

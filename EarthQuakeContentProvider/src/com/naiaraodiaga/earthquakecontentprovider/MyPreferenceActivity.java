@@ -44,8 +44,12 @@ public class MyPreferenceActivity extends PreferenceActivity implements
 			}
 			else{
 				Log.d("NAIARA", "MyPreferenceActivity - Stop service");
+				this.cancelAlarm();
 			}
         }
+		else if(key == getResources().getString(R.string.INTERVAL_KEY)){
+			setInexactRepeatingAlarm();
+		}
 		else{
 			Log.d("NAIARA", "prefs: "+prefs.getString(key, "15"));
 		}
@@ -54,28 +58,56 @@ public class MyPreferenceActivity extends PreferenceActivity implements
 	
 	
 	private void setInexactRepeatingAlarm() {
+		Log.d("NAIARA", "setInexactRepeatingAlarm");
 	    //Get a reference to the Alarm Manager
+		try{
+			
+		
 	    AlarmManager alarmManager =
 	    (AlarmManager)getSystemService(this.ALARM_SERVICE);
 	    //Set the alarm to wake the device if sleeping.
 	    int alarmType = AlarmManager.ELAPSED_REALTIME_WAKEUP;
 	    //Schedule the alarm to repeat every half hour.
-//	    long timeOrLengthofWait = AlarmManager.INTERVAL_HALF_HOUR;
-	    long timeOrLengthofWait = 1000; 
+	    
+	    int interval = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.INTERVAL_KEY), "5"));
+	    
+	    Log.d("NAIARA", "Intervalo: "+interval);
+	    
+	    long timeOrLengthofWait = 1000 * 60 * interval; // 1000 = Un segundo
+	    
+	    
 	    //Create a Pending Intent that will broadcast and action
-	    String ALARM_ACTION = "ALARM_ACTION";
-	    Intent intentToFire = new Intent(ALARM_ACTION);
+	    
+	    Intent intentToFire = new Intent(AlarmReceiver.ALARM_ACTION);
 	    PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0,
 	     intentToFire, 0);
-	    //Wake up the device to fire an alarm in half an hour, and every
-	    //half-hour after that.
-//	    alarmManager.setInexactRepeating(alarmType,
-//	                              timeOrLengthofWait,
-//	                              timeOrLengthofWait,
-//	                              alarmIntent);
+
 	    alarmManager.setInexactRepeating(alarmType,
                 0,
                 timeOrLengthofWait,
-                alarmIntent);
+                alarmIntent); // El 0 indica que la primera alarma se lanzar‡ ya mismo
+		}catch(Exception e1){
+			Log.d("NAIARA", "ERROR - MyPreferenceActivity (setInexactRepeatingAlarm): "+e1.getMessage());
+			cancelAlarm();
+			Log.d("NAIARA", "Alarm canceled");
+		}
+		
 	}
+	
+	
+	private void cancelAlarm() {
+		try{
+			Log.d("NAIARA", "cancelAlarm");
+			String ALARM_ACTION = "com.naiaraodiaga.earthquake.alarmService";
+			Intent ringintent = new Intent(ALARM_ACTION);
+		    PendingIntent pi = PendingIntent.getBroadcast(this, 0, ringintent, 0);
+		    AlarmManager am = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
+		    am.cancel(pi);
+		}catch(Exception e2){
+			Log.d("NAIARA", "ERROR - MyPreferenceActivity (cancelAlarm): "+e2.getMessage());
+		}
+		
+	}
+	
+	
 }

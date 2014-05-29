@@ -8,18 +8,14 @@ import android.drm.DrmStore.Action;
 import android.util.Log;
 
 public class AlarmReceiver extends BroadcastReceiver {
-
-	private static Action accion; 
+	
+	public static String ALARM_ACTION = "com.naiaraodiaga.earthquake.alarmService";
 	
 	@Override
 	public void onReceive(Context ctx, Intent intent) {
-		String action = intent.getAction().toString();
-		Log.d("NAIARA", "AlarmReceiver - onReceive (action): "+action);
-		
-		
-//		Intent intent = new Intent(this, QuakesDownloaderService.class);
-//		getActivity().startService(intent);
 
+		Intent serviceIntent = new Intent(ctx, QuakesDownloaderService.class);
+	    ctx.startService(serviceIntent);
 	}
 
 	
