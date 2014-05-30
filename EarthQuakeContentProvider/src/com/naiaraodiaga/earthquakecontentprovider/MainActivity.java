@@ -1,5 +1,7 @@
 package com.naiaraodiaga.earthquakecontentprovider;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -19,6 +21,16 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+
+		actionBar.setTitle("T’tulo");
+		actionBar.setSubtitle("Subt’tulo");
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+		
 
 		if (savedInstanceState == null) {
 			FragmentManager fragmentManager = getFragmentManager();
@@ -26,6 +38,9 @@ public class MainActivity extends Activity {
 					.beginTransaction();
 			fragmentTransaction.add(R.id.container, new QuakesListFragment(), "list");
 			fragmentTransaction.commit();
+			
+			
+			
 		}
 	}
 
@@ -51,6 +66,9 @@ public class MainActivity extends Activity {
 		} else if(id == R.id.refresh_button) {
 			((QuakesListFragment)getFragmentManager().findFragmentByTag("list")).refreshEarthQuakes();
 		}
+//		else if(id == R.id.home){
+//			
+//		}
 		return super.onOptionsItemSelected(item);
 	}
 
